@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RepairWorkshopEmployee.DB
+{
+    public static class Extensions
+    {
+        public static void FillObservableCollection<T>(this ObservableCollection<T> destination, List<T> source)
+        {
+            foreach (var item in source)
+            {
+                destination.Add(item);
+            }
+        }
+    }
+}
