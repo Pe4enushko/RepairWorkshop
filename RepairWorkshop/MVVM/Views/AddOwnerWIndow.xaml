@@ -1,0 +1,40 @@
+﻿<Window x:Class="RepairWorkshopEmployee.MVVM.Views.AddOwnerWIndow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:RepairWorkshopEmployee.MVVM.ViewModels"
+        xmlns:local="clr-namespace:RepairWorkshopEmployee.MVVM.Views"
+        mc:Ignorable="d"
+        Title="AddOwnerWIndow" Height="272" Width="330">
+    <Window.DataContext>
+        <vm:AddOwnerViewModel/>
+    </Window.DataContext>
+    <Grid Margin="0,0,-21,1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <MediaElement Panel.ZIndex="10" 
+                      Source="/Images/loader.gif" 
+                      Grid.RowSpan="3" 
+                      Grid.ColumnSpan="3"
+                      Visibility="{Binding BusyVisibility}"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+            <TextBlock Text="Телефон"/>
+            <TextBox Text="{Binding Phone}"/>
+            <TextBlock Text="ФИО владельца"/>
+            <TextBox Text="{Binding OwnerName}"/>
+            <Button Content="Войти"
+                    Margin="20"
+                    Command="{Binding AddOwnerCommand}"/>
+        </StackPanel>
+    </Grid>
+</Window>

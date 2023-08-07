@@ -12,6 +12,6 @@
         <vm:PriceListViewModel/>
     </Page.DataContext>
     <Grid>
-        
+        <DataGrid ItemsSource="{Binding Prices}"/>
     </Grid>
 </Page>

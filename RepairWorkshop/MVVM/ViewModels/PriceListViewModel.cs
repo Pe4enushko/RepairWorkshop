@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using RepairWorkshopEmployee.DB;
 using RepairWorkshopEmployee.MVVM.Models;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     public partial class PriceListViewModel : BaseViewModel
     {
         [ObservableProperty]
-        ObservableCollection<Price> prices;
+        Price[] prices;
         public PriceListViewModel() 
         {
-            
+            prices = DataStorage.GetPriceList();
         }
     }
 }

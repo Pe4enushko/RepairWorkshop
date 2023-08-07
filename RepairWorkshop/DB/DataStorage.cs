@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,8 +18,12 @@ namespace RepairWorkshopEmployee.DB
 
         static RepairWorkshopContext context = new();
 
+        public static bool AnyEmployeeWithID(string id)
+            => context.Employees.Any(e => e.IdEmployee == id);
         public static int GetTechOwnerId(string ownerName)
             => context.TechOwners.First(o => o.Fullname == ownerName).IdOwner;
+        public static bool AnyTechOwner(string ownerName)
+            => context.TechOwners.Any(o => o.Fullname == ownerName);
         public static Price[] GetPriceList()
             => context.Prices.ToArray();
 
@@ -33,18 +38,31 @@ namespace RepairWorkshopEmployee.DB
         /// </summary>
         /// <param name="ord"></param>
         /// <exception cref="DbUpdateException"></exception>
-        public async static void MakeOrderAsync(Order ord)
+        public async static Task<bool> TryMakeOrderAsync(Order ord)
         {
             try
             {
-                context.Orders.Add(ord);
-                await context.SaveChangesAsync();
+                await context.Orders.AddAsync(ord);
+                return await context.SaveChangesAsync() > 0;
             }
             catch (DbUpdateConcurrencyException)
             {
                 context.SaveChanges();
             }
+            return false;
         }
-
+        public static async Task<bool> TryAddOwnerAsync(string ownerName, string phone)
+        {
+            try
+            {
+                await context.TechOwners.AddAsync(new TechOwner() { Fullname = ownerName, Phone = phone});
+                return await context.SaveChangesAsync() > 0;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                context.SaveChanges();
+            }
+            return false;
+        }
     }
 }

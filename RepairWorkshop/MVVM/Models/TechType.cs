@@ -12,4 +12,9 @@ public partial class TechType
     public string Manufacturer { get; set; } = null!;
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

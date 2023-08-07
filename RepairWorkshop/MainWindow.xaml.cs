@@ -1,4 +1,5 @@
 ﻿using RepairWorkshopEmployee.MVVM.Views;
+using RepairWorkshopEmployee.ProgramControl;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,9 +14,8 @@ namespace RepairWorkshopEmployee
         {
             InitializeComponent();
 
-            Fr_MakeOrder.Content = new MakeOrderView();
-            Fr_PriceList.Content = new PriceListView();
-            Fr_Receips.Content = new ReceipsView();
+            PageNavigation.mainWindow = this;
+            Fr_Content.Content = new AuthView();
         }
     }
 }

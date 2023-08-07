@@ -12,6 +12,6 @@
         <vm:ReceipsViewModel/>
     </Page.DataContext>
     <Grid>
-        
+        <DataGrid ItemsSource="{Binding Receips}"/>
     </Grid>
 </Page>
