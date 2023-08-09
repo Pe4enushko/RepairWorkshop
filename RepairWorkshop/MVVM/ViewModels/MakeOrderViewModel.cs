@@ -33,7 +33,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         public MakeOrderViewModel() 
         {
             techTypes.FillObservableCollection(
-                DataStorage.GetTechTypes());
+                (List<TechType>)DataStorage.GetTechTypes());
         }
 
         [RelayCommand]
@@ -42,7 +42,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             IsBusy = true;
             if (!DataStorage.AnyTechOwner(OwnerName))
             {
-                var aow = new AddOwnerWIndow();
+                var aow = new AddOwnerWindow();
                 aow.ShowDialog();
 
                 if (!aow.DialogResult ?? false)

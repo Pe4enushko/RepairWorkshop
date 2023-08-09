@@ -13,6 +13,8 @@
     </Page.DataContext>
     <Grid>
         <MediaElement Panel.ZIndex="10" 
+                      Stretch="UniformToFill"
+                      VerticalAlignment="Center"
                       Source="/Images/loader.gif" 
                       Grid.RowSpan="3" 
                       Grid.ColumnSpan="3"

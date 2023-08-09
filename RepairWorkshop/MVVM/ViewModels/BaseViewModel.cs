@@ -14,5 +14,14 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [ObservableProperty]
         bool isBusy;
         public Visibility BusyVisibility { get => isBusy ? Visibility.Visible : Visibility.Hidden; }
+        
+        /// <summary>
+        /// Подтверждение
+        /// </summary>
+        /// <returns></returns>
+        protected bool ConfirmDialog()
+            => MessageBox.Show("Подтвердите действие",
+                "Уверены?",
+                MessageBoxButton.OKCancel) == MessageBoxResult.OK;
     }
 }

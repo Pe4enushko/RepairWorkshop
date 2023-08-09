@@ -18,9 +18,9 @@ namespace RepairWorkshopEmployee.MVVM.Views
     /// <summary>
     /// Interaction logic for AddOwnerWIndow.xaml
     /// </summary>
-    public partial class AddOwnerWIndow : Window
+    public partial class AddOwnerWindow : Window
     {
-        public AddOwnerWIndow()
+        public AddOwnerWindow()
         {
             InitializeComponent();
 

@@ -13,6 +13,10 @@
             <Frame Name="Fr_MakeOrder"
                    NavigationUIVisibility="Hidden"/>
         </TabItem>
+        <TabItem Name="ti" Header="Провести оплату заказа">
+            <Frame Name="Fr_PayOrder"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
         <TabItem Header="Прайс лист">
             <Frame Name="Fr_PriceList"
                    NavigationUIVisibility="Hidden"/>

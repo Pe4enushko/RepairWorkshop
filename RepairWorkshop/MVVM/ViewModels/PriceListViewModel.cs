@@ -13,10 +13,14 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     public partial class PriceListViewModel : BaseViewModel
     {
         [ObservableProperty]
-        Price[] prices;
+        List<Price> prices;
         public PriceListViewModel() 
         {
-            prices = DataStorage.GetPriceList();
+            LoadData();
+        }
+        async void LoadData()
+        {
+            Prices = await DataStorage.GetPriceListAsync();
         }
     }
 }

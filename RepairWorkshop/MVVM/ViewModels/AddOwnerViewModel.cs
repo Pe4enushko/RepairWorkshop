@@ -24,7 +24,8 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         async Task AddOwner()
         {
             IsBusy = true;
-            if (await DataStorage.TryAddOwnerAsync(OwnerName, Phone))
+            if (ConfirmDialog() 
+                    && await DataStorage.TryAddOwnerAsync(OwnerName, Phone))
                 success?.Invoke(this, EventArgs.Empty);
             else
             {
@@ -32,6 +33,11 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 fail?.Invoke(this, EventArgs.Empty);
             }
             IsBusy = false;
+        }
+        [RelayCommand]
+        void Cancel()
+        {
+            fail?.Invoke(this, EventArgs.Empty);
         }
     }
 }
