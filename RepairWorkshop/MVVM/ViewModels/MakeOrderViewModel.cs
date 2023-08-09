@@ -62,7 +62,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 IdType = SelectedTechType.IdType
             };
 
-            if (await DataStorage.TryMakeOrderAsync(order))
+            if (DataStorage.TryMakeOrder(order))
             {
                 MessageBox.Show("Заказ создан");
 

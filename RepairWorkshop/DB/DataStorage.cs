@@ -100,7 +100,7 @@ namespace RepairWorkshopEmployee.DB
                         IdOrder = order.IdOrder, 
                         IdPrice = price.IdPrice
                     });
-                return await SureSaveAsync();
+                return SureSave(context);
             }
         }
         async static Task<bool> SureSaveAsync(RepairWorkshopContext context)
