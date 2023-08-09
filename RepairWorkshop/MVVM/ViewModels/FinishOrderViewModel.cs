@@ -37,7 +37,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             else
             {
                 if (ConfirmDialog()
-                        && DataStorage.TryMakeReceip(SelectedOrder, SelectedPrice))
+                        && await DataStorage.TryMakeReceipAsync(SelectedOrder, SelectedPrice))
                     Sent();
             }
         }

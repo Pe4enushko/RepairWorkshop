@@ -72,23 +72,23 @@ namespace RepairWorkshopEmployee.DB
         /// </summary>
         /// <param name="ord"></param>
         /// <exception cref="DbUpdateException"></exception>
-        public  static bool TryMakeOrder(Order ord)
+        public async static Task<bool> TryMakeOrderAsync(Order ord)
         {
             using (var context = new RepairWorkshopContext())
             {
                 context.Orders.Add(ord);
-                return SureSave(context);
+                return await SureSaveAsync(context);
             }
         }
-        public static bool TryAddOwner(string ownerName, string phone)
+        public async static Task<bool> TryAddOwnerAsync(string ownerName, string phone)
         {
             using (var context = new RepairWorkshopContext())
             {
                 context.TechOwners.Add(new TechOwner() { Fullname = ownerName, Phone = phone });
-                return SureSave(context);
+                return await SureSaveAsync(context);
             }
         }
-        public static bool TryMakeReceip(Order order, Price price)
+        public async static Task<bool> TryMakeReceipAsync(Order order, Price price)
         {
             using (var context = new RepairWorkshopContext())
             {
@@ -100,7 +100,7 @@ namespace RepairWorkshopEmployee.DB
                         IdOrder = order.IdOrder, 
                         IdPrice = price.IdPrice
                     });
-                return SureSave(context);
+                return await SureSaveAsync(context);
             }
         }
         async static Task<bool> SureSaveAsync(RepairWorkshopContext context)
@@ -117,6 +117,7 @@ namespace RepairWorkshopEmployee.DB
         }
         static bool SureSave(RepairWorkshopContext context)
             => context.SaveChanges() > 0;
+         
         static bool OrderHasReceip(Order order)
         {
             using (var context = new RepairWorkshopContext())

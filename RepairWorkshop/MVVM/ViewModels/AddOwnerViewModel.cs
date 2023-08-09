@@ -25,7 +25,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         {
             IsBusy = true;
             if (ConfirmDialog() 
-                    && DataStorage.TryAddOwner(OwnerName, Phone))
+                    && await DataStorage.TryAddOwnerAsync(OwnerName, Phone))
                 success?.Invoke(this, EventArgs.Empty);
             else
             {

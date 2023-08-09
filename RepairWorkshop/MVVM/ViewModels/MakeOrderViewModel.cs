@@ -33,7 +33,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         public MakeOrderViewModel() 
         {
             techTypes.FillObservableCollection(
-                (List<TechType>)DataStorage.GetTechTypes());
+                DataStorage.GetTechTypes());
         }
 
         [RelayCommand]
@@ -62,7 +62,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 IdType = SelectedTechType.IdType
             };
 
-            if (DataStorage.TryMakeOrder(order))
+            if (await DataStorage.TryMakeOrderAsync(order))
             {
                 MessageBox.Show("Заказ создан");
 
