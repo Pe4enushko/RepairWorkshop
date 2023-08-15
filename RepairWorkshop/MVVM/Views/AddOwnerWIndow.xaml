@@ -12,9 +12,9 @@
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="47*"/>
+            <ColumnDefinition Width="253*"/>
+            <ColumnDefinition Width="52*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,24 +27,26 @@
                       Grid.ColumnSpan="3"
                       Visibility="{Binding BusyVisibility}"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">
+        <StackPanel Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Margin="0,6,0,2">
             <TextBlock Text="Телефон"/>
-            <TextBox Text="{Binding Phone}"/>
+            <TextBox Text="{Binding Phone}"
+                     Name="Txt_Phone"/>
             <TextBlock Text="ФИО владельца"/>
-            <TextBox Text="{Binding OwnerName}"/>
+            <TextBox Text="{Binding OwnerName}" 
+                     Name="Txt_Owner"/>
         </StackPanel>
-        <Grid Margin="10" Grid.Row="2" Grid.ColumnSpan="3">
+        <Grid Margin="10,10,10,10" Grid.Row="2" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Отменить"
                         Margin="20"
-                        Command="{Binding AddOwnerCommand}"/>
+                        Command="{Binding CancelCommand}"/>
             <Button Content="Добавить"
                         Margin="20"
                         Grid.Column="1"
-                        Command="{Binding CancelCommand}"/>
+                        Command="{Binding AddOwnerCommand}"/>
         </Grid>
     </Grid>
 </Window>

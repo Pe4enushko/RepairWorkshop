@@ -15,9 +15,11 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     public partial class FinishOrderViewModel : BaseViewModel
     {
         [ObservableProperty]
-        ObservableCollection<Order> orders;
+        ObservableCollection<char> message = new ObservableCollection<char>("Отправить".ToCharArray());
         [ObservableProperty]
-        ObservableCollection<Price> prices;
+        List<Order> orders;
+        [ObservableProperty]
+        List<Price> prices;
 
         [ObservableProperty]
         Order selectedOrder;
@@ -30,6 +32,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [RelayCommand]
         async Task SendData()
         {
+            IsBusy = true;
             if (SelectedOrder == null || SelectedPrice == null)
             {
                 MessageBox.Show("Сначала, нужно выбрать заказ и цену");
@@ -40,6 +43,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                         && await DataStorage.TryMakeReceipAsync(SelectedOrder, SelectedPrice))
                     Sent();
             }
+            IsBusy = false;
         }
 
         /// <summary>
@@ -50,14 +54,14 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             UpdateData();
             MessageBox.Show("Чек пробит");
         }
-        async void UpdateData()
+        protected override void UpdateData()
         {
-
+            FillData();
         }
         async void FillData()
         {
-            Orders = new ObservableCollection<Order>(await DataStorage.GetUnpaidOrdersAsync());
-            Prices = new ObservableCollection<Price>(await DataStorage.GetPriceListAsync());
+            Orders = await DataStorage.GetUnpaidOrdersAsync();
+            Prices = await DataStorage.GetPriceListAsync();
         }
     }
 }

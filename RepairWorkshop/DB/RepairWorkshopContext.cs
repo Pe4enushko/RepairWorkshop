@@ -102,14 +102,15 @@ public partial class RepairWorkshopContext : DbContext
                 .HasMaxLength(100)
                 .HasColumnName("name");
             entity.Property(e => e.Price1)
-                .HasColumnType("money")
+                .HasColumnType("decimal(10,2)")
                 .HasColumnName("price");
         });
 
         modelBuilder.Entity<Receip>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.IdReceip);
 
+            entity.Property(e => e.IdReceip).HasColumnName("id_receip");
             entity.Property(e => e.IdOrder).HasColumnName("id_order");
             entity.Property(e => e.IdPrice).HasColumnName("id_price");
 

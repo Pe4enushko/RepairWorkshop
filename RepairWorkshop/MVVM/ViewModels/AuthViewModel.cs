@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Data.SqlClient;
 using RepairWorkshopEmployee.DB;
 using RepairWorkshopEmployee.ProgramControl;
 using System;
@@ -24,23 +25,32 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [RelayCommand]
         async void TryAuth()
         {
+            IsBusy = true;
             await Task.Run(() =>
             {
-                IsBusy = true;
-                if (DataStorage.AnyEmployeeWithID(id))
+                try
                 {
-                    DataStorage.EmployeeId = Id;
-                    App.Current.Dispatcher.Invoke(() =>
+                    if (DataStorage.AnyEmployeeWithID(id))
                     {
-                        IsBusy = false;
-                        PageNavigation.ChangePage(new MainContentPage());
-                    });
+                        DataStorage.EmployeeId = Id;
+                        App.Current.Dispatcher.Invoke(() =>
+                        {
+                            IsBusy = false;
+                            PageNavigation.ChangePage(new MainContentPage());
+                        });
+                    }
+                    else
+                    {
+                        Failed = true;
+                        return;
+                    }
                 }
-                else
+                catch (SqlException ex)
                 {
-                    Failed = true;
-                    return;
+                    MessageBox.Show($"Проблемы с базой данных. Сообщение: {ex.Message}");
                 }
+            }).ContinueWith(a =>
+            {
                 IsBusy = false;
             });
         }

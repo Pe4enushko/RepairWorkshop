@@ -12,6 +12,17 @@
         <vm:PriceListViewModel/>
     </Page.DataContext>
     <Grid>
-        <DataGrid ItemsSource="{Binding Prices}"/>
+        <ListView ItemsSource="{Binding Prices}"
+                  ItemTemplate="{DynamicResource PriceTemplate}"
+                  AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background"
+                            Value="{Binding RelativeSource={RelativeSource self}, 
+                                    Path=(ItemsControl.AlternationIndex), 
+                                    Converter={StaticResource alt_yellow_white}}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
     </Grid>
 </Page>

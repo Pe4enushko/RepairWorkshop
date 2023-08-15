@@ -34,7 +34,7 @@
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ФИО владельца"/>
                     <TextBox Text="{Binding OwnerName}"/>
-                    </StackPanel>
+                </StackPanel>
             </Border>
             <Border BorderThickness="0 0 0 1" BorderBrush="Black">
                 <StackPanel Height="170" Orientation="Horizontal">

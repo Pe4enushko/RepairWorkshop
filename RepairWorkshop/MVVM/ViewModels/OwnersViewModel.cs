@@ -1,26 +1,22 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using RepairWorkshopEmployee.DB;
 using RepairWorkshopEmployee.MVVM.Models;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RepairWorkshopEmployee.MVVM.ViewModels
 {
-    public partial class PriceListViewModel : BaseViewModel
+    public partial class OwnersViewModel : BaseViewModel
     {
         [ObservableProperty]
-        List<Price> prices;
-        public PriceListViewModel() 
+        List<TechOwner> techOwners;
+        public OwnersViewModel() 
         {
             FillData();
+            DataStorage.DataAdded += FillData;
         }
         async void FillData()
         {
-            Prices = await DataStorage.GetPriceListAsync();
+            TechOwners = await DataStorage.GetAllOwners();
         }
     }
 }

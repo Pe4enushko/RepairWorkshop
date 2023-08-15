@@ -24,12 +24,13 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         async Task AddOwner()
         {
             IsBusy = true;
-            if (ConfirmDialog() 
+            if (ConfirmDialog()
                     && await DataStorage.TryAddOwnerAsync(OwnerName, Phone))
+            {
                 success?.Invoke(this, EventArgs.Empty);
+            }
             else
             {
-                MessageBox.Show("Owner addition failed");
                 fail?.Invoke(this, EventArgs.Empty);
             }
             IsBusy = false;

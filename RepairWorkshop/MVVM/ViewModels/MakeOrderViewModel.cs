@@ -37,7 +37,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         }
 
         [RelayCommand]
-        async void SendData()
+        async Task SendData()
         {
             IsBusy = true;
             if (!DataStorage.AnyTechOwner(OwnerName))
@@ -48,8 +48,11 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 if (!aow.DialogResult ?? false)
                 {
                     IsBusy = false;
-                    return;
                 }
+
+                OwnerName = aow.vm.OwnerName;
+
+                return;
             }
             
             Order order = new()

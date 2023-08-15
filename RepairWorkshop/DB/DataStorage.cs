@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
@@ -18,6 +19,8 @@ namespace RepairWorkshopEmployee.DB
 {
     public static class DataStorage
     {
+        public delegate void DataAddHandler();
+        public static event DataAddHandler DataAdded;
         static object locker = new();
         static bool locked = false;
         public static string EmployeeId = "";
@@ -38,15 +41,35 @@ namespace RepairWorkshopEmployee.DB
             using (var context = new RepairWorkshopContext())
                 return context.TechOwners.Any(o => o.Fullname == ownerName);
         }
+        public async static Task<List<TechOwner>> GetAllOwners()
+        {
+            using (var context = new RepairWorkshopContext())
+                return await context.TechOwners.ToListAsync();
+        }
         public async static Task<List<Price>> GetPriceListAsync()
         {
             using (var context = new RepairWorkshopContext())
-                return await context.Prices.ToListAsync();
+            {
+                try
+                {
+                    return await context.Prices.ToListAsync();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    return null;
+                }
+            }
         }
-        public static Receip[] GetReceips()
+        public static async Task<Receip[]> GetReceipsAsync()
         {
             using (var context = new RepairWorkshopContext())
-                return context.Receips.ToArray();
+                return await context.Receips
+                    .Include(r => r.IdOrderNavigation)
+                    .Include(r => r.IdPriceNavigation)
+                    .Include(r => r.IdOrderNavigation.IdOwnerNavigation)
+                    .Include(r => r.IdOrderNavigation.IdTypeNavigation)
+                    .ToArrayAsync();
         }
         public static List<TechType> GetTechTypes()
         {
@@ -62,6 +85,8 @@ namespace RepairWorkshopEmployee.DB
                     .FromSqlRaw("SELECT Orders.* " +
                                 "FROM Orders " +
                                 "WHERE Orders.id_order NOT IN (SELECT id_order FROM Receips)")
+                    .Include(o => o.IdOwnerNavigation)
+                    .Include(o => o.IdTypeNavigation)
                     .ToListAsync();
             }
         }
@@ -82,6 +107,9 @@ namespace RepairWorkshopEmployee.DB
         }
         public async static Task<bool> TryAddOwnerAsync(string ownerName, string phone)
         {
+            if (string.IsNullOrEmpty(ownerName) || string.IsNullOrEmpty(phone))
+                return false;
+
             using (var context = new RepairWorkshopContext())
             {
                 context.TechOwners.Add(new TechOwner() { Fullname = ownerName, Phone = phone });
@@ -95,28 +123,34 @@ namespace RepairWorkshopEmployee.DB
                 if (OrderHasReceip(order))
                 return false;
 
-                context.Receips.Add(new Receip() 
-                    { 
-                        IdOrder = order.IdOrder, 
-                        IdPrice = price.IdPrice
-                    });
+                Receip data = new Receip()
+                {
+                    IdOrder = order.IdOrder,
+                    IdPrice = price.IdPrice
+                };
+
+                context.Receips.Add(data);
+
                 return await SureSaveAsync(context);
             }
         }
         async static Task<bool> SureSaveAsync(RepairWorkshopContext context)
         {
+            bool success;
             try
             {
-                return await context.SaveChangesAsync() > 0;
+                success = await context.SaveChangesAsync() > 0;
             }
             catch (DbUpdateConcurrencyException)
             {
-                context.SaveChanges();
+                success = context.SaveChanges() > 0;
             }
-            return false;
+
+            if (success)
+                DataAdded?.Invoke();
+            
+            return success;
         }
-        static bool SureSave(RepairWorkshopContext context)
-            => context.SaveChanges() > 0;
          
         static bool OrderHasReceip(Order order)
         {

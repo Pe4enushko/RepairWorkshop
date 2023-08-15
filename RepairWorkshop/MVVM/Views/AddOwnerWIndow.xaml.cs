@@ -20,20 +20,24 @@ namespace RepairWorkshopEmployee.MVVM.Views
     /// </summary>
     public partial class AddOwnerWindow : Window
     {
-        public AddOwnerWindow()
+        public AddOwnerViewModel vm;
+        public AddOwnerWindow(string ownerName = "")
         {
             InitializeComponent();
 
-            var vm = DataContext as AddOwnerViewModel;
+            vm = DataContext as AddOwnerViewModel;
+            vm.OwnerName = ownerName;
             vm.success += (s, e) =>
             {
                 DialogResult = true;
                 Close();
+                MessageBox.Show("Владелец добавлен");
             };
             vm.fail += (s, e) =>
             {
                 DialogResult = false;
                 Close();
+                MessageBox.Show("Владелец не был добавлен");
             };
         }
     }

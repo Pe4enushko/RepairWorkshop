@@ -15,7 +15,17 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         Receip[] receips;
         public ReceipsViewModel()
         {
-            receips = DataStorage.GetReceips();
+            FillData();
+        }
+
+        protected override void UpdateData()
+        {
+            FillData();
+        }
+
+        async void FillData()
+        {
+            Receips = await DataStorage.GetReceipsAsync();
         }
     }
 }
