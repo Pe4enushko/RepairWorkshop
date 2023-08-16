@@ -1,0 +1,37 @@
+﻿<Page x:Class="RepairWorkshopEmployee.MainContentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RepairWorkshopEmployee"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainContentPage">
+
+    <TabControl Name="Tabs">
+        <TabItem Header="Создать заказ">
+            <Frame Name="Fr_MakeOrder"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
+        <TabItem Name="ti" Header="Провести оплату заказа">
+            <Frame Name="Fr_PayOrder"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
+        <TabItem Header="Прайс лист">
+            <Frame Name="Fr_PriceList"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
+        <TabItem Header="Чеки">
+            <Frame Name="Fr_Receips"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
+        <TabItem Header="Сотрудники">
+            <Frame Name="Fr_Employees"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
+        <TabItem Header="Заказы">
+            <Frame Name="Fr_Orders"
+                   NavigationUIVisibility="Hidden"/>
+        </TabItem>
+    </TabControl>
+</Page>

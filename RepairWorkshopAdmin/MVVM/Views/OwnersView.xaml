@@ -1,4 +1,4 @@
-﻿<Page x:Class="RepairWorkshopEmployee.MVVM.Views.ReceipsView"
+﻿<Page x:Class="RepairWorkshopEmployee.MVVM.Views.OwnersView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,12 +7,18 @@
       xmlns:local="clr-namespace:RepairWorkshopEmployee.MVVM.Views"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Receips">
+      Title="OwnersView">
     <Page.DataContext>
-        <vm:ReceipsViewModel/>
+        <vm:OwnersViewModel/>
     </Page.DataContext>
     <Grid>
-        <ListView ItemsSource="{Binding Receips}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListView ItemsSource="{Binding TechOwners}"
+                  ItemTemplate="{DynamicResource OwnerTemplate}"
+                  SelectedItem="{Binding SelectedOwner}"
                   AlternationCount="2">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -23,5 +29,12 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+
+        <Button Grid.Row="1" 
+                Content="Добавить" 
+                HorizontalAlignment="Right"/>
+        <Button Grid.Row="1" 
+                Content="Удалить" 
+                HorizontalAlignment="Left"/>
     </Grid>
 </Page>

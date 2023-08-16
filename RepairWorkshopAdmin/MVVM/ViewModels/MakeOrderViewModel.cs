@@ -30,14 +30,14 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [ObservableProperty]
         TechType selectedTechType;
 
-        public MakeOrderViewModel() 
+        public MakeOrderViewModel() : base()
         {
             techTypes.FillObservableCollection(
                 DataStorage.GetTechTypes());
         }
 
         [RelayCommand]
-        public async Task SendData()
+        async Task SendData()
         {
             IsBusy = true;
             if (!DataStorage.AnyTechOwner(OwnerName))

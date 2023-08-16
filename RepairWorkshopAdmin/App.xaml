@@ -1,0 +1,144 @@
+﻿<Application x:Class="RepairWorkshopEmployee.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:model="clr-namespace:RepairWorkshopEmployee.MVVM.Models"
+             xmlns:local="clr-namespace:RepairWorkshopEmployee"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <AlternationConverter x:Key="alt_yellow_white" >
+                <SolidColorBrush Color="Wheat"/>
+                <SolidColorBrush Color="#EEE"/>
+            </AlternationConverter>
+
+            <DataTemplate x:Key="OrderTemplate">
+                <StackPanel>
+                    <Grid MinWidth="309">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock >
+                                <Run Text="Владелец: "/>
+                                <Run Text="{Binding IdOwnerNavigation.Fullname}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding IdOwnerNavigation.Phone}"/>
+                    </Grid>
+                    <Grid MinWidth="309">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock >
+                                <Run Text="Устройство"/>
+                                <Run Text="{Binding IdTypeNavigation.Manufacturer}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" 
+                                       Text="{Binding IdTypeNavigation.Name}"
+                                       TextWrapping="Wrap"/>
+                    </Grid>
+                    <TextBlock TextWrapping="Wrap">
+                            <Run Text="Неисправность: "/>
+                            <Run Text="{Binding MalfunctionDescription}"/>
+                    </TextBlock>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="OwnerTemplate">
+                <StackPanel>
+                    <Grid MinWidth="309">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="200" />
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="250" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Телефон"
+                                   Grid.Column="0"/>
+                        <TextBlock Text="{Binding Fullname}"
+                                   Grid.Column="1"
+                                   TextWrapping="Wrap"/>
+                        <TextBlock Text="ФИО"
+                                   Grid.Column="2"/>
+                        <TextBlock Grid.Column="3"
+                                   Text="{Binding Phone}"/>
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="PriceTemplate">
+                <StackPanel>
+                    <Grid MinWidth="309">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Name}"
+                                       TextWrapping="Wrap"/>
+                        <TextBlock Grid.Column="1">
+                                <Run Text="{Binding Price1}"/>
+                                <Run Text="руб."/>
+                        </TextBlock>
+                    </Grid>
+
+                    <TextBlock Text="{Binding Description}"
+                                   TextWrapping="Wrap"/>
+                </StackPanel>
+            </DataTemplate>
+
+            <DataTemplate x:Key="EmployeeTemplate">
+                <StackPanel>
+                    <Grid MinWidth="309">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock TextWrapping="Wrap">
+                            <Run Text="ID: "/>
+                            <Run Text="{Binding IdEmployee}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1"
+                                   TextWrapping="Wrap">
+                            <Run Text="ФИО: "/>
+                            <Run Text="{Binding Fullname}"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="2">
+                            <Run Text="Тел.: "/>
+                            <Run Text="{Binding Phone}"/>
+                        </TextBlock>
+                    </Grid>
+
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="Адрес: "/>
+                        <Run Text="{Binding Address}"/>
+                    </TextBlock>
+                </StackPanel>
+            </DataTemplate>
+
+            <Style TargetType="StackPanel">
+                <Setter Property="Margin" Value="0 6 0 2"/>
+            </Style>
+            <Style TargetType="TextBlock">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="30 5"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Height" Value="20"/>
+            </Style>
+            <Style TargetType="ComboBox">
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Height" Value="20"/>
+            </Style>
+            <Style TargetType="RichTextBox">
+                <Setter Property="Width" Value="200"/>
+                <Setter Property="Height" Value="20"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

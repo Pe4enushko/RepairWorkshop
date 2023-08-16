@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkshopEmployee", "RepairWorkshop\RepairWorkshopEmployee.csproj", "{A8201F47-C23B-49E1-9DA1-E730A861A53A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RepairWorkshopEmployee", "RepairWorkshop\RepairWorkshopEmployee.csproj", "{A8201F47-C23B-49E1-9DA1-E730A861A53A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepairWorkshopAdmin", "RepairWorkshopAdmin\RepairWorkshopAdmin.csproj", "{951FB076-846A-4C68-873B-99FAA74A9655}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A8201F47-C23B-49E1-9DA1-E730A861A53A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8201F47-C23B-49E1-9DA1-E730A861A53A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A8201F47-C23B-49E1-9DA1-E730A861A53A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{951FB076-846A-4C68-873B-99FAA74A9655}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{951FB076-846A-4C68-873B-99FAA74A9655}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{951FB076-846A-4C68-873B-99FAA74A9655}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{951FB076-846A-4C68-873B-99FAA74A9655}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

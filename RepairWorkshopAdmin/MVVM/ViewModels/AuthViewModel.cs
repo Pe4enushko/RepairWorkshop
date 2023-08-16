@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace RepairWorkshopEmployee.MVVM.ViewModels
 {
@@ -20,22 +21,21 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [NotifyPropertyChangedFor(nameof(FailVisibility))]
         bool failed = false;
         [ObservableProperty]
-        string id;
+        string password;
 
         [RelayCommand]
-        public async Task TryAuth()
+        async void TryAuth()
         {
             IsBusy = true;
             await Task.Run(() =>
             {
+                IsBusy = false;
                 try
                 {
-                    if (DataStorage.AnyEmployeeWithID(id))
+                    if (Password == "Imagination")
                     {
-                        DataStorage.EmployeeId = Id;
                         App.Current.Dispatcher.Invoke(() =>
                         {
-                            IsBusy = false;
                             PageNavigation.ChangePage(new MainContentPage());
                         });
                     }
