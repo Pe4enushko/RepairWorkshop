@@ -1,8 +1,8 @@
 ﻿using RepairWorkshopAdmin.MVVM.Views;
-using RepairWorkshopEmployee.MVVM.Views;
+using RepairWorkshopAdmin.MVVM.Views;
 using System.Windows.Controls;
 
-namespace RepairWorkshopEmployee
+namespace RepairWorkshopAdmin
 {
     /// <summary>
     /// Interaction logic for MainContentPage.xaml

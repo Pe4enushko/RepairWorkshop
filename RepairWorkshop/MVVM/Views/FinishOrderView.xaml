@@ -12,13 +12,20 @@
     <Page.DataContext>
         <vm:FinishOrderViewModel/>
     </Page.DataContext>
-    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
+        <MediaElement Panel.ZIndex="3"
+                      LoadedBehavior="Play"
+                      Grid.ColumnSpan="3"
+                      Grid.RowSpan="3"
+                      Stretch="UniformToFill"
+                      VerticalAlignment="Center"
+                      Source="pack://application:,,,/Images/loader.gif" 
+                      Visibility="{Binding BusyVisibility}"/>
         <ListView Grid.Column="0"
                   ItemsSource="{Binding Orders}"
                   SelectionMode="Single"

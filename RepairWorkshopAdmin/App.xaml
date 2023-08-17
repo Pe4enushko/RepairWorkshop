@@ -1,8 +1,8 @@
-﻿<Application x:Class="RepairWorkshopEmployee.App"
+﻿<Application x:Class="RepairWorkshopAdmin.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:model="clr-namespace:RepairWorkshopEmployee.MVVM.Models"
-             xmlns:local="clr-namespace:RepairWorkshopEmployee"
+             xmlns:model="clr-namespace:RepairWorkshopAdmin.MVVM.Models"
+             xmlns:local="clr-namespace:RepairWorkshopAdmin"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>

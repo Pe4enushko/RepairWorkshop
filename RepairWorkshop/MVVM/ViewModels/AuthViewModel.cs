@@ -30,12 +30,11 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             {
                 try
                 {
-                    if (DataStorage.AnyEmployeeWithID(id))
+                    if (DataStorage.AnyEmployeeWithID(Id))
                     {
                         DataStorage.EmployeeId = Id;
                         App.Current.Dispatcher.Invoke(() =>
                         {
-                            IsBusy = false;
                             PageNavigation.ChangePage(new MainContentPage());
                         });
                     }
@@ -51,7 +50,10 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 }
             }).ContinueWith(a =>
             {
-                IsBusy = false;
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    IsBusy = false;
+                });
             });
         }
     }

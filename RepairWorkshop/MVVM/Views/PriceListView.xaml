@@ -12,6 +12,13 @@
         <vm:PriceListViewModel/>
     </Page.DataContext>
     <Grid>
+        <MediaElement Panel.ZIndex="3"
+                      LoadedBehavior="Play"
+                      Stretch="UniformToFill"
+                      VerticalAlignment="Center"
+                      Source="pack://application:,,,/Images/loader.gif" 
+                      Visibility="{Binding BusyVisibility}"/>
+        
         <ListView ItemsSource="{Binding Prices}"
                   ItemTemplate="{DynamicResource PriceTemplate}"
                   AlternationCount="2">

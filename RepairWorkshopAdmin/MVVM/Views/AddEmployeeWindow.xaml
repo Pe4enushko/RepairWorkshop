@@ -21,10 +21,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <MediaElement Panel.ZIndex="10" 
-                      Source="/Images/loader.gif" 
-                      Grid.RowSpan="3" 
+        <MediaElement Panel.ZIndex="3"
+                      LoadedBehavior="Play"
                       Grid.ColumnSpan="3"
+                      Grid.RowSpan="3"
+                      Stretch="UniformToFill"
+                      VerticalAlignment="Center"
+                      Source="pack://application:,,,/Images/loader.gif" 
                       Visibility="{Binding BusyVisibility}"/>
 
         <StackPanel Grid.Column="1" 

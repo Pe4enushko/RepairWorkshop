@@ -1,4 +1,4 @@
-﻿using RepairWorkshopEmployee.MVVM.ViewModels;
+﻿using RepairWorkshopAdmin.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace RepairWorkshopEmployee.MVVM.Views
+namespace RepairWorkshopAdmin.MVVM.Views
 {
     /// <summary>
     /// Interaction logic for AddOwnerWIndow.xaml

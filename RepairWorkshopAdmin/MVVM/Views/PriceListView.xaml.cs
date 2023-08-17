@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RepairWorkshopEmployee.MVVM.Views
+namespace RepairWorkshopAdmin.MVVM.Views
 {
     /// <summary>
     /// Interaction logic for PriceList.xaml

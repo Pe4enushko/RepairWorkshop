@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace RepairWorkshopEmployee.MVVM.Models;
+namespace RepairWorkshopAdmin.MVVM.Models;
 
 public partial class Receip
 {

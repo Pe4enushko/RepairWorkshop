@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.MVVM.Models;
-using RepairWorkshopEmployee.MVVM.Views;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.MVVM.Models;
+using RepairWorkshopAdmin.MVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RepairWorkshopEmployee.MVVM.ViewModels
+namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
     public partial class MakeOrderViewModel : BaseViewModel
     {
@@ -30,10 +30,10 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [ObservableProperty]
         TechType selectedTechType;
 
-        public MakeOrderViewModel() : base()
+        protected async override void FillData()
         {
-            techTypes.FillObservableCollection(
-                DataStorage.GetTechTypes());
+            TechTypes.FillObservableCollection(
+                await DataStorage.GetTechTypesAsync());
         }
 
         [RelayCommand]
@@ -73,9 +73,10 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 MalfunctionDescription = string.Empty;
                 OwnerName = string.Empty;
             }
-            
-            IsBusy = false;
+            else
+                MessageBox.Show("Заказ не был создан");
 
+            IsBusy = false;
         }
     }
 }

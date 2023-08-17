@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.MVVM.Models;
-using RepairWorkshopEmployee.MVVM.ViewModels;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.MVVM.Models;
+using RepairWorkshopAdmin.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

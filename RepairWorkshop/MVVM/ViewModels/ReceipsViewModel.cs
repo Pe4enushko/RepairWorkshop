@@ -13,17 +13,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     {
         [ObservableProperty]
         Receip[] receips;
-        public ReceipsViewModel()
-        {
-            FillData();
-        }
-
-        protected override void UpdateData()
-        {
-            FillData();
-        }
-
-        async void FillData()
+        protected async override void FillData()
         {
             Receips = await DataStorage.GetReceipsAsync();
         }

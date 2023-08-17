@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.MVVM.Models;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RepairWorkshopEmployee.MVVM.ViewModels
+namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
     public partial class FinishOrderViewModel : BaseViewModel
     {
@@ -54,11 +54,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             UpdateData();
             MessageBox.Show("Чек пробит");
         }
-        protected override void UpdateData()
-        {
-            FillData();
-        }
-        async void FillData()
+        protected async override void FillData()
         {
             Orders = await DataStorage.GetUnpaidOrdersAsync();
             Prices = await DataStorage.GetPriceListAsync();

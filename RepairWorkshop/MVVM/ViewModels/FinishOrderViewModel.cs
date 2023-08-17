@@ -25,10 +25,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         Order selectedOrder;
         [ObservableProperty]
         Price selectedPrice;
-        public FinishOrderViewModel()
-        {
-            FillData();
-        }
+
         [RelayCommand]
         async Task SendData()
         {
@@ -54,11 +51,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             UpdateData();
             MessageBox.Show("Чек пробит");
         }
-        protected override void UpdateData()
-        {
-            FillData();
-        }
-        async void FillData()
+        protected async override void FillData()
         {
             Orders = await DataStorage.GetUnpaidOrdersAsync();
             Prices = await DataStorage.GetPriceListAsync();

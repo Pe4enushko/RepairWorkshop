@@ -1,14 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.MVVM.Models;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.MVVM.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepairWorkshopEmployee.MVVM.ViewModels
+namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
     public partial class ReceipsViewModel : BaseViewModel
     {

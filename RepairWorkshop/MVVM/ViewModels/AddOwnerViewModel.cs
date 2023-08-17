@@ -23,6 +23,12 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [RelayCommand]
         async Task AddOwner()
         {
+            if (Phone.Length != 11)
+            {
+                MessageBox.Show("Номер телефона не валиден");
+                return;
+            }
+
             IsBusy = true;
             if (ConfirmDialog()
                     && await DataStorage.TryAddOwnerAsync(OwnerName, Phone))

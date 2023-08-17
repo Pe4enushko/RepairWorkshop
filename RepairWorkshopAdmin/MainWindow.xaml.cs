@@ -1,9 +1,9 @@
-﻿using RepairWorkshopEmployee.MVVM.Views;
-using RepairWorkshopEmployee.ProgramControl;
+﻿using RepairWorkshopAdmin.MVVM.Views;
+using RepairWorkshopAdmin.ProgramControl;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace RepairWorkshopEmployee
+namespace RepairWorkshopAdmin
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

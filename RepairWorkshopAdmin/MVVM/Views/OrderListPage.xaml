@@ -17,6 +17,15 @@
                 <RowDefinition Height="5*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
+
+            <MediaElement Panel.ZIndex="3"
+                      LoadedBehavior="Play"
+                      Grid.RowSpan="2"
+                      Stretch="UniformToFill"
+                      VerticalAlignment="Center"
+                      Source="pack://application:,,,/Images/loader.gif" 
+                      Visibility="{Binding BusyVisibility}"/>
+
             <ListView ItemsSource="{Binding Orders}"
                   SelectedItem="{Binding SelectedOrder}"
                   ItemTemplate="{DynamicResource OrderTemplate}"

@@ -18,6 +18,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
 
         public BaseViewModel()
         {
+            FillData();
             DataStorage.DataAdded += UpdateData;   
         }
 
@@ -33,6 +34,11 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         /// Вызывается при добавлении чего-либо в БД со стороны клиента
         /// </summary>
         protected virtual void UpdateData()
+        {
+            FillData();
+        }
+
+        protected virtual void FillData()
         {
 
         }

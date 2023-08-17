@@ -9,12 +9,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     {
         [ObservableProperty]
         List<TechOwner> techOwners;
-        public OwnersViewModel() 
-        {
-            FillData();
-            DataStorage.DataAdded += FillData;
-        }
-        async void FillData()
+        protected async override void FillData()
         {
             TechOwners = await DataStorage.GetAllOwners();
         }

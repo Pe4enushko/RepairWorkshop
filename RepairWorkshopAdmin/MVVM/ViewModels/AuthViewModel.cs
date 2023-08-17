@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Data.SqlClient;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.ProgramControl;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.ProgramControl;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace RepairWorkshopEmployee.MVVM.ViewModels
+namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
     public partial class AuthViewModel : BaseViewModel
     {
@@ -29,7 +29,6 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
             IsBusy = true;
             await Task.Run(() =>
             {
-                IsBusy = false;
                 try
                 {
                     if (Password == "Imagination")
@@ -51,7 +50,10 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
                 }
             }).ContinueWith(a =>
             {
-                IsBusy = false;
+                App.Current.Dispatcher.Invoke(() =>
+                {
+                    IsBusy = false;
+                });
             });
         }
     }

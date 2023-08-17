@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using RepairWorkshopEmployee.MVVM.Models;
-using RepairWorkshopEmployee.MVVM.Views;
+using RepairWorkshopAdmin.MVVM.Models;
+using RepairWorkshopAdmin.MVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
-namespace RepairWorkshopEmployee.DB
+namespace RepairWorkshopAdmin.DB
 {
     public static class DataStorage
     {
@@ -92,10 +92,10 @@ namespace RepairWorkshopEmployee.DB
                     .Include(r => r.IdOrderNavigation.IdTypeNavigation)
                     .ToArrayAsync();
         }
-        public static List<TechType> GetTechTypes()
+        public static async Task<List<TechType>> GetTechTypesAsync()
         {
             using (var context = new RepairWorkshopContext())
-                return context.TechTypes.ToList();
+                return await context.TechTypes.ToListAsync();
         }
         public static async Task<List<Order>> GetUnpaidOrdersAsync()
         {

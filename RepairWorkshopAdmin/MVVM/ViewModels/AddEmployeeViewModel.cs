@@ -1,13 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.MVVM.Models;
-using RepairWorkshopEmployee.MVVM.ViewModels;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.MVVM.Models;
+using RepairWorkshopAdmin.MVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
@@ -28,6 +29,12 @@ namespace RepairWorkshopAdmin.MVVM.ViewModels
         [RelayCommand]
         public async Task AddItem()
         {
+            if (Phone.Length != 11)
+            {
+                MessageBox.Show("Номер телефона не валиден");
+                return;
+            }
+
             IsBusy = true;
             if (ConfirmDialog()
                     && await DataStorage.TryAddEmployeeAsync(new Employee()

@@ -1,13 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using RepairWorkshopAdmin.MVVM.Views;
-using RepairWorkshopEmployee.DB;
-using RepairWorkshopEmployee.MVVM.Models;
-using RepairWorkshopEmployee.MVVM.Views;
+using RepairWorkshopAdmin.DB;
+using RepairWorkshopAdmin.MVVM.Models;
+using RepairWorkshopAdmin.MVVM.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace RepairWorkshopEmployee.MVVM.ViewModels
+namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
     public partial class OwnersViewModel : BaseViewModel
     {

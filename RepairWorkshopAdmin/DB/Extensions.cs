@@ -5,16 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RepairWorkshopEmployee.DB
+namespace RepairWorkshopAdmin.DB
 {
     public static class Extensions
     {
         public static void FillObservableCollection<T>(this ObservableCollection<T> destination, List<T> source)
         {
-            foreach (var item in source)
+            App.Current.Dispatcher.Invoke(() =>
             {
-                destination.Add(item);
-            }
+                foreach (var item in source)
+                {
+                    destination.Add(item);
+                }
+            });
         }
     }
 }

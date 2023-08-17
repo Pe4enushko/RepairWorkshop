@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using RepairWorkshopEmployee.DB;
+using RepairWorkshopAdmin.DB;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace RepairWorkshopEmployee.MVVM.ViewModels
+namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
     public partial class AddOwnerViewModel : BaseViewModel
     {
@@ -23,6 +23,12 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [RelayCommand]
         async Task AddOwner()
         {
+            if (Phone.Length != 11)
+            {
+                MessageBox.Show("Номер телефона не валиден");
+                return;
+            }
+
             IsBusy = true;
             if (ConfirmDialog()
                     && await DataStorage.TryAddOwnerAsync(OwnerName, Phone))

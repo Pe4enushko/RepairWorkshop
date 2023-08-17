@@ -6,7 +6,7 @@
         xmlns:v="clr-namespace:RepairWorkshopEmployee.MVVM.Views"
         xmlns:local="clr-namespace:RepairWorkshopEmployee"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="500" Width="800" ResizeMode="NoResize">
     <Frame Name="Fr_Content"
            NavigationUIVisibility="Hidden">
         

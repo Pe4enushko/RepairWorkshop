@@ -29,11 +29,10 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
 
         [ObservableProperty]
         TechType selectedTechType;
-
-        public MakeOrderViewModel() 
+        protected async override void FillData()
         {
-            techTypes.FillObservableCollection(
-                DataStorage.GetTechTypes());
+            TechTypes.FillObservableCollection(
+                await DataStorage.GetTechTypesAsync());
         }
 
         [RelayCommand]

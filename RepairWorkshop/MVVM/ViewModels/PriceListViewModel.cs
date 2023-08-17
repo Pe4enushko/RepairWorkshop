@@ -14,11 +14,7 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     {
         [ObservableProperty]
         List<Price> prices;
-        public PriceListViewModel() 
-        {
-            FillData();
-        }
-        async void FillData()
+        protected async override void FillData()
         {
             Prices = await DataStorage.GetPriceListAsync();
         }

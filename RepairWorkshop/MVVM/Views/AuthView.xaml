@@ -12,6 +12,11 @@
         <vm:AuthViewModel/>
     </Page.DataContext>
     <Grid>
+        <MediaElement Panel.ZIndex="3"
+                      LoadedBehavior="Play"
+                      Source="pack://application:,,,/Images/loader.gif" 
+                      Visibility="{Binding BusyVisibility}"/>
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -22,12 +27,6 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <MediaElement Panel.ZIndex="10" 
-                      Source="/Images/loader.gif" 
-                      Grid.RowSpan="3" 
-                      Grid.ColumnSpan="3"
-                      Visibility="{Binding BusyVisibility}"/>
-
         <StackPanel Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Введите свой ID"/>
             <TextBlock Text="Такого ID нет"
@@ -38,5 +37,6 @@
                     Margin="20"
                     Command="{Binding TryAuthCommand}"/>
         </StackPanel>
+    </Grid>
     </Grid>
 </Page>

@@ -71,10 +71,10 @@ namespace RepairWorkshopEmployee.DB
                     .Include(r => r.IdOrderNavigation.IdTypeNavigation)
                     .ToArrayAsync();
         }
-        public static List<TechType> GetTechTypes()
+        public static async Task<List<TechType>> GetTechTypesAsync()
         {
             using (var context = new RepairWorkshopContext())
-                return context.TechTypes.ToList();
+                return await context.TechTypes.ToListAsync();
         }
         public static async Task<List<Order>> GetUnpaidOrdersAsync()
         {

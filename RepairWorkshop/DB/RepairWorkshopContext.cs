@@ -17,7 +17,6 @@ public partial class RepairWorkshopContext : DbContext
         : base(options)
     {
     }
-
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<Order> Orders { get; set; }
@@ -32,7 +31,9 @@ public partial class RepairWorkshopContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-FRCEKS8;Initial Catalog=RepairWorkshop;User ID=RepairEmployee;Password=123;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        => optionsBuilder.LogTo(App.Log, Microsoft.Extensions.Logging.LogLevel.Error)
+                         .UseSqlServer("Data Source=DESKTOP-FRCEKS8;Initial Catalog=RepairWorkshop;User ID=RepairEmployee;Password=deadmau5;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False",
+            opt => opt.EnableRetryOnFailure());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
