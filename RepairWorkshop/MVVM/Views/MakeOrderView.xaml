@@ -32,7 +32,7 @@
             <Border BorderThickness="0 0 0 1" BorderBrush="Black">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="ФИО владельца"/>
-                    <TextBox Text="{Binding OwnerName}"/>
+                    <TextBox Text="{Binding OwnerName}" Width="250"/>
                 </StackPanel>
             </Border>
             <Border BorderThickness="0 0 0 1" BorderBrush="Black">
@@ -73,8 +73,8 @@
                     VerticalAlignment="Center" 
                     Margin="10 20" 
                     Content="Отправить" 
-                    Height="20"
-                    Width="120"
+                    Height="40"
+                    Width="170"
                     Command="{Binding SendDataCommand}"/>
         </StackPanel>
     </Grid>

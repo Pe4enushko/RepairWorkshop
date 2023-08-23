@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using RepairWorkshopEmployee.DB;
 using RepairWorkshopEmployee.MVVM.Models;
 using System;
@@ -12,10 +13,20 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
     public partial class ReceipsViewModel : BaseViewModel
     {
         [ObservableProperty]
+        Receip selectedReceip;
+        [ObservableProperty]
         Receip[] receips;
         protected async override void FillData()
         {
             Receips = await DataStorage.GetReceipsAsync();
+        }
+        [RelayCommand]
+        void RemoveItem()
+        {
+            if (SelectedReceip != null)
+            {
+                Task.Run(() => { DataStorage.TryRemoveEntity(SelectedReceip).Wait(); });
+            }
         }
     }
 }

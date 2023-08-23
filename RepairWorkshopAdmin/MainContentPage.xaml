@@ -33,5 +33,9 @@
             <Frame Name="Fr_Orders"
                    NavigationUIVisibility="Hidden"/>
         </TabItem>
+        <TabItem Header="Клиенты">
+            <Frame Name="Fr_Owners"
+           NavigationUIVisibility="Hidden"/>
+        </TabItem>
     </TabControl>
 </Page>

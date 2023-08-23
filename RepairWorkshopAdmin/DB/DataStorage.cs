@@ -192,23 +192,7 @@ namespace RepairWorkshopAdmin.DB
                 return await SureSaveAsync(context);
             }
         }
-        async static Task<bool> SureSaveAsync(RepairWorkshopContext context)
-        {
-            bool success;
-            try
-            {
-                success = await context.SaveChangesAsync() > 0;
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                success = context.SaveChanges() > 0;
-            }
 
-            if (success)
-                DataAdded?.Invoke();
-            
-            return success;
-        }
 
         #endregion
         #region Remove things
@@ -236,6 +220,39 @@ namespace RepairWorkshopAdmin.DB
                 return await SureSaveAsync(context);
             }
         }
+        public async static Task RemoveReceipsFromOrder(Order order)
+        {
+            using (var context = new RepairWorkshopContext())
+            {
+                context.Receips.RemoveRange(context.Receips.Where(o => o.IdOrder == order.IdOrder).ToList());
+                await SureSaveAsync(context);
+            }
+        }
+        public async static Task RemoveOrdersFromOwner(TechOwner owner)
+        {
+            using (var context = new RepairWorkshopContext())
+            {  
+                context.Orders.RemoveRange(context.Orders.Where(o => o.IdOwner == owner.IdOwner).ToList());
+                await SureSaveAsync(context);
+            }
+        }
         #endregion
+        async static Task<bool> SureSaveAsync(RepairWorkshopContext context)
+        {
+            bool success;
+            try
+            {
+                success = await context.SaveChangesAsync() > 0;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                success = context.SaveChanges() > 0;
+            }
+
+            if (success)
+                DataAdded?.Invoke();
+
+            return success;
+        }
     }
 }

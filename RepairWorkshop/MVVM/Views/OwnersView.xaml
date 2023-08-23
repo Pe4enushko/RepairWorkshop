@@ -12,12 +12,40 @@
         <vm:OwnersViewModel/>
     </Page.DataContext>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
         <MediaElement Panel.ZIndex="3"
-                      LoadedBehavior="Play"
-                      Stretch="UniformToFill"
-                      VerticalAlignment="Center"
-                      Source="pack://application:,,,/Images/loader.gif" 
-                      Visibility="{Binding BusyVisibility}"/>
-        <DataGrid ItemsSource="{Binding TechOwners}"/>
+                  LoadedBehavior="Play"
+                  Grid.RowSpan="2"
+                  Stretch="UniformToFill"
+                  VerticalAlignment="Center"
+                  Source="pack://application:,,,/Images/loader.gif" 
+                  Visibility="{Binding BusyVisibility}"/>
+
+        <ListView ItemsSource="{Binding TechOwners}"
+              ItemTemplate="{DynamicResource OwnerTemplate}"
+              SelectedItem="{Binding SelectedOwner}"
+              AlternationCount="2">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Background"
+                        Value="{Binding RelativeSource={RelativeSource self}, 
+                                Path=(ItemsControl.AlternationIndex), 
+                                Converter={StaticResource alt_yellow_white}}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+        <Button Grid.Row="1" 
+            Content="Добавить" 
+            HorizontalAlignment="Left"
+            Command="{Binding AddItemCommand}"/>
+        <Button Grid.Row="1" 
+            Content="Удалить" 
+            HorizontalAlignment="Right"
+            Command="{Binding RemoveItemCommand}"/>
     </Grid>
 </Page>

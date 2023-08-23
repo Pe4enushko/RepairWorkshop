@@ -158,5 +158,29 @@ namespace RepairWorkshopEmployee.DB
                 return context.Receips.Any(r => r.IdOrder == order.IdOrder);
         }
         #endregion
+        public async static Task<bool> TryRemoveEntity(object entity)
+        {
+            using (var context = new RepairWorkshopContext())
+            {
+                if (entity == null)
+                    return false;
+
+                // I've tried switch/case but there were problems
+                if (entity is Employee)
+                    context.Employees.Remove(entity as Employee);
+                else if (entity is Order)
+                    context.Orders.Remove(entity as Order);
+                else if (entity is Price)
+                    context.Prices.Remove(entity as Price);
+                else if (entity is Receip)
+                    context.Receips.Remove(entity as Receip);
+                else if (entity is TechOwner)
+                    context.TechOwners.Remove(entity as TechOwner);
+                else if (entity is TechType)
+                    context.TechTypes.Remove(entity as TechType);
+
+                return await SureSaveAsync(context);
+            }
+        }
     }
 }

@@ -13,14 +13,15 @@
     </Page.DataContext>
     <Grid>
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="9*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
 
             <MediaElement Panel.ZIndex="3"
                       LoadedBehavior="Play"
                       Grid.RowSpan="2"
+                      Grid.ColumnSpan="2"
                       Stretch="UniformToFill"
                       VerticalAlignment="Center"
                       Source="pack://application:,,,/Images/loader.gif" 
@@ -38,9 +39,10 @@
                     </Style>
                 </ListView.ItemContainerStyle>
             </ListView>
-            <Button Grid.Row="1" 
-                Content="Удалить" 
-                HorizontalAlignment="Left"
+            <Button Grid.Column="1" 
+                Background="#EBB"
+                Content="Отменить" 
+                HorizontalContentAlignment="Center"
                 Command="{Binding RemoveItemCommand}"/>
         </Grid>
     </Grid>

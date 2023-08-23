@@ -25,5 +25,9 @@
             <Frame Name="Fr_Receips"
                    NavigationUIVisibility="Hidden"/>
         </TabItem>
+        <TabItem Header="Клиенты">
+            <Frame Name="Fr_Owners"
+           NavigationUIVisibility="Hidden"/>
+        </TabItem>
     </TabControl>
 </Page>

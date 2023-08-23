@@ -27,7 +27,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    Grid.RowSpan="2">
             <TextBlock Text="Введите свой ID"/>
             <TextBlock Text="Такого ID нет"
                        Foreground="Red"
@@ -35,6 +37,7 @@
             <TextBox Text="{Binding Id}"/>
             <Button Content="Войти"
                     Margin="20"
+                    Height="35"
                     Command="{Binding TryAuthCommand}"/>
         </StackPanel>
     </Grid>

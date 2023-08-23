@@ -19,6 +19,7 @@ namespace RepairWorkshopAdmin
             Fr_PayOrder.Content = new FinishOrderView();
             Fr_Employees.Content = new EmployeesPage();
             Fr_Orders.Content = new OrderListPage();
+            Fr_Owners.Content = new OwnersView();
         }
     }
 }

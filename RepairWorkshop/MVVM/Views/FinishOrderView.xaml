@@ -88,9 +88,9 @@
                 Grid.Column="1"
                 VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="8">
             <ItemsControl ItemsSource="{Binding Message}"
-                          Background="LimeGreen"
-                          FontSize="29"
-                          />
+                          Background="Wheat"
+                          FontSize="27"
+                          Height="430"/>
         </Button>
 
 

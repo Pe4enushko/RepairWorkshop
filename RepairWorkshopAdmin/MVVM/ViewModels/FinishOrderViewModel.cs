@@ -15,7 +15,7 @@ namespace RepairWorkshopAdmin.MVVM.ViewModels
     public partial class FinishOrderViewModel : BaseViewModel
     {
         [ObservableProperty]
-        ObservableCollection<char> message = new ObservableCollection<char>("Отправить".ToCharArray());
+        List<char> message = new List<char>("Отправить".ToCharArray());
         [ObservableProperty]
         List<Order> orders;
         [ObservableProperty]

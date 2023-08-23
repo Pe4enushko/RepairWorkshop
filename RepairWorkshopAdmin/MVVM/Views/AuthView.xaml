@@ -31,7 +31,8 @@
                       Source="pack://application:,,,/Images/loader.gif" 
                       Visibility="{Binding BusyVisibility}"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2"
+                    Grid.Row="1">
             <TextBlock Text="Введите пароль"/>
             <TextBlock Text="Пароль не правильный"
                        Foreground="Red"
@@ -39,6 +40,7 @@
             <TextBox Text="{Binding Password}"/>
             <Button Content="Войти"
                     Margin="20"
+                    Height="35"
                     Command="{Binding TryAuthCommand}"/>
         </StackPanel>
     </Grid>

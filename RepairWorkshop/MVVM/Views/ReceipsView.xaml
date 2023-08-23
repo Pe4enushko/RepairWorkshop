@@ -12,14 +12,21 @@
         <vm:ReceipsViewModel/>
     </Page.DataContext>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        
         <MediaElement Panel.ZIndex="3"
+                      Grid.ColumnSpan="2"
                       LoadedBehavior="Play"
                       Stretch="UniformToFill"
                       VerticalAlignment="Center"
                       Source="pack://application:,,,/Images/loader.gif" 
                       Visibility="{Binding BusyVisibility}"/>
-        
+
         <ListView ItemsSource="{Binding Receips}"
+                  SelectedItem="{Binding SelectedReceip}"
                   AlternationCount="2">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
@@ -30,5 +37,10 @@
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>
+        <Button Grid.Column="1" 
+                Background="#EBB"
+                Content="Отменить" 
+                HorizontalContentAlignment="Center"
+                Command="{Binding RemoveItemCommand}"/>
     </Grid>
 </Page>

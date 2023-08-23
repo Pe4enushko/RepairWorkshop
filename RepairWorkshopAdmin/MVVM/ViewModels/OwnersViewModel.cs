@@ -6,6 +6,8 @@ using RepairWorkshopAdmin.MVVM.Models;
 using RepairWorkshopAdmin.MVVM.Views;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
+using System;
 
 namespace RepairWorkshopAdmin.MVVM.ViewModels
 {
@@ -26,11 +28,21 @@ namespace RepairWorkshopAdmin.MVVM.ViewModels
             window.ShowDialog();
         }
         [RelayCommand]
-        void RemoveItem()
+        async Task RemoveItem()
         {
             if (SelectedOwner != null)
             {
-                Task.Run(() => { DataStorage.TryRemoveEntity(SelectedOwner).Wait(); });
+                IsBusy = true;
+
+                try
+                {
+                    await DataStorage.TryRemoveEntity(SelectedOwner);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Клиент не может быть удалён, т.к., скорее всего, на нём уже завязаны какие-то заказы или чеки.\nСообщение: " + e.InnerException?.Message ?? e.Message);
+                }
+                IsBusy = false;
             }
         }
     }

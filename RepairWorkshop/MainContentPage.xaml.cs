@@ -16,6 +16,7 @@ namespace RepairWorkshopEmployee
             Fr_PriceList.Content = new PriceListView();
             Fr_Receips.Content = new ReceipsView();
             Fr_PayOrder.Content = new FinishOrderView();
+            Fr_Owners.Content = new OwnersView();
         }
     }
 }

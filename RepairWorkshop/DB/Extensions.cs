@@ -11,10 +11,13 @@ namespace RepairWorkshopEmployee.DB
     {
         public static void FillObservableCollection<T>(this ObservableCollection<T> destination, List<T> source)
         {
-            foreach (var item in source)
+            App.Current.Dispatcher.Invoke(() =>
             {
-                destination.Add(item);
-            }
+                foreach (var item in source)
+                {
+                    destination.Add(item);
+                }
+            });
         }
     }
 }
