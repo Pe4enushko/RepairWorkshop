@@ -25,7 +25,8 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         {
             if (SelectedReceip != null)
             {
-                Task.Run(() => { DataStorage.TryRemoveEntity(SelectedReceip).Wait(); });
+                if (ConfirmDialog())
+                    Task.Run(() => { DataStorage.TryRemoveEntity(SelectedReceip).Wait(); });
             }
         }
     }

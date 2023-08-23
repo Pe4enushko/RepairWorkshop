@@ -31,7 +31,8 @@ namespace RepairWorkshopAdmin.MVVM.ViewModels
         [RelayCommand]
         void RemoveItem()
         {
-            Task.Run(() => { DataStorage.TryRemoveEntity(SelectedPrice).Wait(); });
+            if (ConfirmDialog())
+                Task.Run(() => { DataStorage.TryRemoveEntity(SelectedPrice).Wait(); });
         }
     }
 }

@@ -48,7 +48,6 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         /// </summary>
         void Sent()
         { 
-            UpdateData();
             MessageBox.Show("Чек пробит");
         }
         protected async override void FillData()

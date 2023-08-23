@@ -38,43 +38,46 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         [RelayCommand]
         public async Task SendData()
         {
-            IsBusy = true;
-            if (!DataStorage.AnyTechOwner(OwnerName))
+            if (ConfirmDialog())
             {
-                var aow = new AddOwnerWindow();
-                aow.ShowDialog();
-
-                if (!aow.DialogResult ?? false)
+                IsBusy = true;
+                if (!DataStorage.AnyTechOwner(OwnerName))
                 {
-                    IsBusy = false;
+                    var aow = new AddOwnerWindow();
+                    aow.ShowDialog();
+
+                    if (!aow.DialogResult ?? false)
+                    {
+                        IsBusy = false;
+                    }
+
+                    OwnerName = aow.vm.OwnerName;
+
+                    return;
                 }
-
-                OwnerName = aow.vm.OwnerName;
-
-                return;
-            }
             
-            Order order = new()
-            {
-                DescriptionByOwner = ownerDescription,
-                MalfunctionDescription = malfunctionDescription,
-                Deadline = Deadline,
-                IdOwner = DataStorage.GetTechOwnerId(OwnerName),
-                IdEmployee = DataStorage.EmployeeId,
-                IdType = SelectedTechType.IdType
-            };
+                Order order = new()
+                {
+                    DescriptionByOwner = ownerDescription,
+                    MalfunctionDescription = malfunctionDescription,
+                    Deadline = Deadline,
+                    IdOwner = DataStorage.GetTechOwnerId(OwnerName),
+                    IdEmployee = DataStorage.EmployeeId,
+                    IdType = SelectedTechType.IdType
+                };
 
-            if (await DataStorage.TryMakeOrderAsync(order))
-            {
-                MessageBox.Show("Заказ создан");
+                if (await DataStorage.TryMakeOrderAsync(order))
+                {
+                    MessageBox.Show("Заказ создан");
 
-                OwnerDescription = string.Empty;
-                MalfunctionDescription = string.Empty;
-                OwnerName = string.Empty;
-            }
+                    OwnerDescription = string.Empty;
+                    MalfunctionDescription = string.Empty;
+                    OwnerName = string.Empty;
+                }
             
-            IsBusy = false;
+                IsBusy = false;
 
+            }
         }
     }
 }

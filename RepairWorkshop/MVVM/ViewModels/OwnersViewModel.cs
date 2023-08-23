@@ -32,17 +32,20 @@ namespace RepairWorkshopEmployee.MVVM.ViewModels
         {
             if (SelectedOwner != null)
             {
-                IsBusy = true;
+                if (ConfirmDialog())
+                {
+                    IsBusy = true;
 
-                try
-                {
-                    await DataStorage.TryRemoveEntity(SelectedOwner);
+                    try
+                    {
+                        await DataStorage.TryRemoveEntity(SelectedOwner);
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Клиент не может быть удалён, т.к., скорее всего, на нём уже завязаны какие-то заказы или чеки.\nСообщение: " + e.InnerException.Message ?? e.Message);
+                    }
+                    IsBusy = false;
                 }
-                catch (Exception e)
-                {
-                    MessageBox.Show("Клиент не может быть удалён, т.к., скорее всего, на нём уже завязаны какие-то заказы или чеки.\nСообщение: " + e.InnerException.Message ?? e.Message);
-                }
-                IsBusy = false;
             }
         }
     }
