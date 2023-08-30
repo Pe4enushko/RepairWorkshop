@@ -32,13 +32,13 @@ namespace RepairWorkshopAdmin.MVVM.Views
             {
                 DialogResult = true;
                 Close();
-                MessageBox.Show("Владелец добавлен");
+                MessageBox.Show("Сотрудник добавлен");
             };
             vm.fail += (s, e) =>
             {
                 DialogResult = false;
                 Close();
-                MessageBox.Show("Владелец не был добавлен");
+                MessageBox.Show("Сотрудник не был добавлен");
             };
         }
     }

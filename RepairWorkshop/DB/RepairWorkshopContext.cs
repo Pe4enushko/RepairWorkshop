@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -32,8 +33,9 @@ public partial class RepairWorkshopContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.LogTo(App.Log, Microsoft.Extensions.Logging.LogLevel.Error)
-                         .UseSqlServer("Data Source=DESKTOP-FRCEKS8;Initial Catalog=RepairWorkshop;User ID=RepairEmployee;Password=deadmau5;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False",
-            opt => opt.EnableRetryOnFailure());
+                         .UseSqlite($"Data source={Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\RepairWorkshop\\RepairDB.db");
+        //.UseSqlServer("Data Source=pe4enushko.ddns.net;Initial Catalog=RepairWorkshop;User ID=RepairEmployee;Password=deadmau5;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False",
+            //opt => opt.EnableRetryOnFailure());
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
