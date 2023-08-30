@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RepairWorkshopEmployee.DB;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -19,6 +20,8 @@ namespace RepairWorkshopEmployee
         {
             // Глобальная обработка необработанных ошибок
             this.Dispatcher.UnhandledException += OnDispatcherUnhandledException;
+
+            new RepairWorkshopContext().Database.EnsureCreated();
         }
 
         void OnDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
